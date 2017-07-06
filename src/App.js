@@ -20,13 +20,27 @@ class App extends Component {
           body: 'Also very fancy',
         },
       },
+      currentNote: {
+        id: null,
+        title: ' ',
+        body: ' '
+      },
     }
   }
+
+setCurrentNote(note) {
+this.setState({currentNote: note})
+}
+
+
 
   render() {
     return (
       <div className="App">
-        <Main notes={this.state.notes} />
+        <Main 
+        notes={this.state.notes}
+        currentNote={this.state.currentNote} 
+        setCurrentNote={this.setCurrentNote.bind(this)}/>
       </div>
     );
   }
