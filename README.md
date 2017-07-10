@@ -1,20 +1,27 @@
 # Noteherder
 
-## Day 6 Homework
+## Day 7 Homework
 
-* Load data in the form when a note is clicked in the list.
+* 
 
 ### Bonus Credit
 
-* Add a note to the list when the form is submitted.
+* 
 
-### Super Mega Bonus Credit
+#### Super Mega Bonus Credit
 
-* Make the _delete_ button work.
+* 
 
-### Super Mega Bonus Credit Hyper Fighting
+##### Super Mega Bonus Credit Hyper Fighting
 
-* Make the "+" button in the sidebar clear out the form so a new note can be added.
+* 
+
+
+
+
+
+
+
 
 --
 
