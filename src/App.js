@@ -32,7 +32,7 @@ class App extends Component {
 
   componentDidMount = () => {
     base.syncState(
-      'notes',
+      `${this.state.uid}/notes`,
       {
         context: this,  // what object the state is on
         state: 'notes', // which property to sync
