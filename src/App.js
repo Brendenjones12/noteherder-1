@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import base, { auth } from './Base'
 
 import './App.css'
 import Main from './Main'
+import SignIn from './SignIn'
 
 class App extends Component {
   constructor() {
@@ -10,7 +12,32 @@ class App extends Component {
     this.state = {
       notes: {},
       currentNote: this.blankNote(),
+      uid: null,
     }
+  }
+
+  componentWillMount = () => {
+    auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          // signed in
+          this.handleAuth(user)
+        } else {
+          // signed out
+          this.setState({ uid: null })
+        }
+      }
+    )
+  }
+
+  componentDidMount = () => {
+    base.syncState(
+      'notes',
+      {
+        context: this,  // what object the state is on
+        state: 'notes', // which property to sync
+      }
+    )
   }
 
   blankNote = () => {
@@ -42,18 +69,35 @@ class App extends Component {
 
   removeCurrentNote = () => {
     const notes = {...this.state.notes}
-    delete notes[this.state.currentNote.id]
+    notes[this.state.currentNote.id] = null
 
     this.setState({ notes })
     this.resetCurrentNote()
   }
 
-  render() {
+  signedIn = () => {
+    return this.state.uid
+  }
+
+  handleAuth = (user) => {
+    this.setState(
+      { uid: user.uid },
+      this.syncNotes
+      )
+    
+  }
+
+  signOut = () => {
+    auth.signOut()
+  }
+
+  renderMain() {
     const actions = {
       setCurrentNote: this.setCurrentNote,
       resetCurrentNote: this.resetCurrentNote,
       saveNote: this.saveNote,
       removeCurrentNote: this.removeCurrentNote,
+      signOut: this.signOut,
     }
 
     const noteData = {
@@ -62,11 +106,17 @@ class App extends Component {
     }
 
     return (
+      <Main
+        {...actions}
+        {...noteData}
+      />
+    )
+  }
+
+  render() {
+    return (
       <div className="App">
-        <Main
-          {...actions}
-          {...noteData}
-        />
+        { this.signedIn() ? this.renderMain() : <SignIn /> }
       </div>
     );
   }
