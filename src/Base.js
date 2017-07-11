@@ -16,8 +16,13 @@ const db = database(app)
 
 export const auth = app.auth()
 export const githubProvider = new firebase.auth.GithubAuthProvider()
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
+//export const AnonProvider = new firebase.auth.AnonymousAuthProvider()
 
 const base = Rebase.createClass(db)
 
 export default base
+
+
+
 
