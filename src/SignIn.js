@@ -40,14 +40,6 @@ e
           <i className="fa fa-github"></i>
             Sign in with GitHub
         </button>
-
-       
-
-
-        
-
-
-
       </main>
     </div>
   )
