@@ -15,7 +15,7 @@ const SignIn = () => {
       .signInWithPopup(githubProvider)
   }
 
-e
+
 
   return (
     <div className="SignIn">
