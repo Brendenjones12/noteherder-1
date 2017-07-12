@@ -9,20 +9,18 @@ import NoteForm from './NoteForm'
 const Main = (props) => {
   const formProps = {
     notes: props.notes,
-    
     saveNote: props.saveNote,
     removeNote: props.removeNote,
+    firebaseNotesSynced: props.firebaseNotesSynced,
   }
 
   return (
     <div className="Main">
       <Sidebar
-        
         signOut={props.signOut}
       />
       <NoteList
         notes={props.notes}
-       
       />
 
       <Switch>
